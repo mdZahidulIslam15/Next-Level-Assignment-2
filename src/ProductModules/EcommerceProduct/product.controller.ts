@@ -33,10 +33,11 @@ const getAllProduct = async (req: Request, res: Response) => {
       data: result,
     });
   } catch (error) {
+    const err = error as Error;
     res.status(500).json({
       success: false,
       message: "Route not found",
-      error: error,
+      error: err.message,
     });
   }
 };
@@ -52,7 +53,7 @@ const getSingleProduct = async (req: Request, res: Response) => {
     });
   } catch (error) {
     res.status(500).json({
-      success: true,
+      success: false,
       message: "Route not found",
       error: error,
     });
@@ -86,7 +87,7 @@ const updateSingleProduct = async (req: Request, res: Response) => {
     });
   } catch (error) {
     res.status(500).json({
-      success: true,
+      success: false,
       message: "Route not found",
       error: error,
     });
@@ -105,7 +106,7 @@ const deleteSingleProduct = async (req: Request, res: Response) => {
     });
   } catch (error) {
     res.status(500).json({
-      success: true,
+      success: false,
       message: "Route not found",
       error: error,
     });

@@ -14,11 +14,22 @@ const createNewOrder = async (req: Request, res: Response) => {
       data: result,
     });
   } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: "Route not found",
-      error: error,
-    });
+    const err = error as Error;
+    if (
+      err.message === "Product not found" ||
+      err.message === "Insufficient quantity available in inventory"
+    ) {
+      res.status(404).json({
+        success: false,
+        message: err.message,
+      });
+    } else {
+      res.status(500).json({
+        success: false,
+        message: "Order not found",
+        error: err.message,
+      });
+    }
   }
 };
 

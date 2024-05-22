@@ -4,12 +4,10 @@ import { TOrderDetails } from "./order.interface";
 const OrderDetailsSchema = new Schema<TOrderDetails>({
   email: {
     type: String,
-    unique: true,
     required: [true, "Email is mandatory"],
   },
   productId: {
     type: String,
-    unique: true,
     required: [true, "Product id needed"],
   },
   price: {
